@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operação Disneyland Paris 🎢</title>
+  <link rel="icon" type="image/png" href="public/favicon.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #1a56a0;
+      --blue-light: #e8f0fb;
+      --gold: #c89b2a;
+      --gold-light: #fdf6e3;
+      --green: #1a7f4b;
+      --green-light: #e8f5ee;
+      --red: #c0392b;
+      --red-light: #fdecea;
+      --grey: #6b7280;
+      --grey-light: #f3f4f6;
+      --border: #e5e7eb;
+      --text: #111827;
+      --text-soft: #4b5563;
+      --white: #ffffff;
+      --radius: 14px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f8f9fa;
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── HEADER ── */
+    .hero {
+      background: linear-gradient(to bottom, rgba(10,25,55,0.55) 0%, rgba(10,25,55,0.72) 100%),
+                  url('public/disney-banner.jpg') center/cover no-repeat;
+      color: white;
+      padding: 32px 20px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 180px; height: 180px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: #1a1a1a;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .hero-sub {
+      font-size: 14px;
+      opacity: 0.8;
+      margin-bottom: 20px;
+    }
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .hero-meta-item {
+      text-align: center;
+    }
+    .hero-meta-item .val {
+      font-size: 20px;
+      font-weight: 800;
+      display: block;
+    }
+    .hero-meta-item .lbl {
+      font-size: 11px;
+      opacity: 0.7;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 0 16px;
+      margin-top: 24px;
+    }
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--grey);
+      margin-bottom: 12px;
+      padding-left: 2px;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .card + .card { margin-top: 10px; }
+
+    /* ── TIMELINE ── */
+    .day-header {
+      background: var(--blue-light);
+      padding: 12px 16px;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .day-header .date-tag {
+      background: var(--blue);
+      color: white;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      padding: 10px 16px;
+      gap: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-time {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue);
+      min-width: 46px;
+      padding-top: 1px;
+    }
+    .timeline-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blue);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+    .timeline-text {
+      font-size: 14px;
+      color: var(--text);
+      flex: 1;
+    }
+    .timeline-text small {
+      display: block;
+      color: var(--text-soft);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .highlight-row {
+      background: #fffbeb;
+    }
+    .highlight-row .timeline-dot { background: var(--gold); }
+    .highlight-row .timeline-time { color: var(--gold); }
+
+    /* ── CUSTOS ── */
+    .cost-toggle {
+      display: flex;
+      background: var(--grey-light);
+      border-radius: 10px;
+      padding: 3px;
+      margin-bottom: 14px;
+    }
+    .cost-toggle button {
+      flex: 1;
+      border: none;
+      background: none;
+      padding: 7px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-soft);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .cost-toggle button.active {
+      background: var(--white);
+      color: var(--blue);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+    }
+    .cost-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cost-row:last-child { border-bottom: none; }
+    .cost-row-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cost-icon {
+      font-size: 20px;
+      width: 32px;
+      text-align: center;
+    }
+    .cost-label {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .cost-label small {
+      display: block;
+      color: var(--text-soft);
+      font-size: 11px;
+    }
+    .cost-value {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--blue);
+    }
+    .cost-optional {
+      font-size: 10px;
+      color: var(--grey);
+      background: var(--grey-light);
+      padding: 1px 6px;
+      border-radius: 6px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .cost-total-row {
+      background: var(--blue-light);
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 0 0 var(--radius) var(--radius);
+    }
+    .cost-total-row .label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--blue);
+    }
+    .cost-total-row .value {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--blue);
+    }
+
+    /* Cousin's Duty */
+    .cousin-card {
+      background: var(--gold-light);
+      border: 1px solid #e8d8a0;
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-top: 10px;
+    }
+    .cousin-card h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #7a5c00;
+      margin-bottom: 4px;
+    }
+    .cousin-card p {
+      font-size: 12px;
+      color: #a07820;
+      margin-bottom: 12px;
+    }
+    .cousin-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      padding: 4px 0;
+      color: #5a4000;
+    }
+    .cousin-total {
+      border-top: 1px solid #e8d8a0;
+      margin-top: 8px;
+      padding-top: 8px;
+      font-weight: 800;
+      font-size: 16px;
+      color: #7a5c00;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ── CENÁRIOS ── */
+    .scenario {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .scenario-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .scenario-header:active { background: var(--grey-light); }
+    .scenario-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .scenario-letter {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .scenario-a .scenario-letter { background: #dbeafe; color: #1d4ed8; }
+    .scenario-b .scenario-letter { background: #dcfce7; color: #166534; }
+    .scenario-c .scenario-letter { background: #fae8ff; color: #7c3aed; }
+    .scenario-title {
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .scenario-subtitle {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+    .scenario-chevron {
+      font-size: 18px;
+      color: var(--grey);
+      transition: transform 0.25s;
+    }
+    .scenario.open .scenario-chevron { transform: rotate(180deg); }
+    .scenario-body {
+      display: none;
+      padding: 0 16px 16px;
+      border-top: 1px solid var(--border);
+    }
+    .scenario.open .scenario-body { display: block; }
+    .scenario-day {
+      margin-top: 12px;
+    }
+    .scenario-day-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--grey);
+      margin-bottom: 6px;
+    }
+    .scenario-day p {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .scenario-day p strong { color: var(--text); }
+    .scenario-tip {
+      background: var(--grey-light);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13px;
+      color: var(--text-soft);
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    /* ── PRINTS GALLERY ── */
+    .prints-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .print-thumb {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      position: relative;
+      background: var(--white);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .print-thumb img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 9/16;
+      object-fit: cover;
+    }
+    .print-thumb-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 20px 8px 8px;
+      text-align: center;
+    }
+    .print-thumb-icon {
+      position: absolute;
+      top: 8px; right: 8px;
+      background: rgba(0,0,0,0.4);
+      color: white;
+      font-size: 12px;
+      padding: 3px 7px;
+      border-radius: 8px;
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-content {
+      position: relative;
+      max-width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .modal-img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+    .modal-caption {
+      color: white;
+      font-size: 13px;
+      margin-top: 10px;
+      text-align: center;
+      opacity: 0.8;
+    }
+    .modal-close {
+      position: fixed;
+      top: 16px; right: 16px;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      font-size: 20px;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modal-nav {
+      display: flex;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .modal-nav button {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .modal-nav button:disabled { opacity: 0.3; }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      padding: 24px 16px 40px;
+      color: var(--grey);
+      font-size: 12px;
+      margin-top: 12px;
+    }
+    .footer strong { color: var(--text-soft); }
+
+    /* ── MISC ── */
+    .spacer { height: 1px; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--blue-light);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* hide values */
+    .val-total { }
+    .val-person { display: none; }
+    body.per-person .val-total { display: none; }
+    body.per-person .val-person { display: inline; }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">✅ Planeamento Otimizado</div>
+  <h1>🎢 Operação<br>Disneyland Paris</h1>
+  <p class="hero-sub">Lisboa ✈️ Paris-Orly · 23–25 Maio 2026</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="val">4</span>
+      <span class="lbl">Pessoas</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="val">3</span>
+      <span class="lbl">Dias</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="val">&lt;400€</span>
+      <span class="lbl">Por pessoa</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- CRONOGRAMA -->
+<div class="section">
+  <div class="section-title">📅 Cronograma</div>
+
+  <div class="card">
+    <div class="day-header">
+      ✈️ Sábado, 23 de Maio
+      <span class="date-tag">Dia 1</span>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-time">06:25</span>
+      <div class="timeline-dot"></div>
+      <div class="timeline-text">
+        Voo de Ida
+        <small>Partida de Lisboa (LIS)</small>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-time">09:55</span>
+      <div class="timeline-dot"></div>
+      <div class="timeline-text">
+        Aterragem em Paris
+        <small>Paris-Orly (ORY)</small>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-time">14:00</span>
+      <div class="timeline-dot"></div>
+      <div class="timeline-text">
+        Check-in disponível
+        <small>hotelF1 Marne-la-Vallée Collégien</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:10px">
+    <div class="day-header" style="background:#fff8e1; color:#b45309;">
+      🎢 Domingo, 24 de Maio
+      <span class="date-tag" style="background:#b45309;">Dia D</span>
+    </div>
+    <div class="timeline-item highlight-row">
+      <span class="timeline-time">09:00</span>
+      <div class="timeline-dot"></div>
+      <div class="timeline-text">
+        Uber de Ida
+        <small>Hotel → Disneyland Paris</small>
+      </div>
+    </div>
+    <div class="timeline-item highlight-row">
+      <span class="timeline-time">🌞</span>
+      <div class="timeline-dot"></div>
+      <div class="timeline-text">
+        <strong>Dia Todo nos 2 Parques</strong>
+        <small>Bilhetes datados · Parque Disneyland + Walt Disney Studios</small>
+      </div>
+    </div>
+    <div class="timeline-item highlight-row">
+      <span class="timeline-time">22:30</span>
+      <div class="timeline-dot"></div>
+      <div class="timeline-text">
+        Uber de Regresso
+        <small>Disneyland Paris → Hotel</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:10px">
+    <div class="day-header">
+      🏠 Segunda, 25 de Maio
+      <span class="date-tag">Dia 3</span>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-time">12:00</span>
+      <div class="timeline-dot"></div>
+      <div class="timeline-text">
+        Check-out
+        <small>Limite hotelF1</small>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-time">21:15</span>
+      <div class="timeline-dot"></div>
+      <div class="timeline-text">
+        Voo de Regresso
+        <small>Partida de Paris-Orly (ORY)</small>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-time">22:55</span>
+      <div class="timeline-dot"></div>
+      <div class="timeline-text">
+        Aterragem em Lisboa
+        <small>LIS · Chegada a casa 🏠</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- CUSTOS -->
+<div class="section">
+  <div class="section-title">💰 Breakdown Financeiro</div>
+
+  <div class="cost-toggle">
+    <button class="active" onclick="setCostView('total')">Total (4 pax)</button>
+    <button onclick="setCostView('person')">Por Pessoa</button>
+  </div>
+
+  <div class="card">
+    <div class="cost-row">
+      <div class="cost-row-left">
+        <span class="cost-icon">✈️</span>
+        <div class="cost-label">
+          Voos
+          <small>LIS ↔ ORY · 4 pessoas</small>
+        </div>
+      </div>
+      <span class="cost-value">
+        <span class="val-total">564,00€</span>
+        <span class="val-person">141,00€</span>
+      </span>
+    </div>
+    <div class="cost-row">
+      <div class="cost-row-left">
+        <span class="cost-icon">🏨</span>
+        <div class="cost-label">
+          Hotel
+          <small>2 noites · 2 quartos</small>
+        </div>
+      </div>
+      <span class="cost-value">
+        <span class="val-total">228,20€</span>
+        <span class="val-person">57,05€</span>
+      </span>
+    </div>
+    <div class="cost-row">
+      <div class="cost-row-left">
+        <span class="cost-icon">🎟️</span>
+        <div class="cost-label">
+          Bilhetes Disney
+          <small>1 dia · 2 parques · 4 px</small>
+        </div>
+      </div>
+      <span class="cost-value">
+        <span class="val-total">536,00€</span>
+        <span class="val-person">134,00€</span>
+      </span>
+    </div>
+    <div class="cost-row">
+      <div class="cost-row-left">
+        <span class="cost-icon">🚕</span>
+        <div class="cost-label">
+          Uber Disney
+          <small>Ida e volta · hotel ↔ parque</small>
+        </div>
+      </div>
+      <span class="cost-value">
+        <span class="val-total">65,90€</span>
+        <span class="val-person">16,48€</span>
+      </span>
+    </div>
+    <div class="cost-row">
+      <div class="cost-row-left">
+        <span class="cost-icon">🥐</span>
+        <div class="cost-label">
+          Pequeno-almoço <span class="cost-optional">opcional</span>
+          <small>5,50€/dia × 2 dias × 4 px</small>
+        </div>
+      </div>
+      <span class="cost-value">
+        <span class="val-total">44,00€</span>
+        <span class="val-person">11,00€</span>
+      </span>
+    </div>
+    <div class="cost-total-row">
+      <span class="label">Total Estimado</span>
+      <span class="value">
+        <span class="val-total">1.438,10€</span>
+        <span class="val-person">359,53€</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Cousin's Duty -->
+  <div class="cousin-card">
+    <h3>🎯 Fundo "Cousin's Duty"</h3>
+    <p>Exclui propositadamente 1 pessoa · cobre Voos + Hotel + Disney para 3 pax</p>
+    <div class="cousin-row"><span>✈️ Voos (3 × 141,00€)</span><span>423,00€</span></div>
+    <div class="cousin-row"><span>🏨 Hotel (3 × 57,05€)</span><span>171,15€</span></div>
+    <div class="cousin-row"><span>🎟️ Disney (3 × 134,00€)</span><span>402,00€</span></div>
+    <div class="cousin-total"><span>Total "Cousin's Duty"</span><span>996,15€</span></div>
+  </div>
+</div>
+
+
+<!-- CENÁRIOS -->
+<div class="section">
+  <div class="section-title">🗺️ Cenários para os Dias Livres</div>
+  <p style="font-size:13px; color:var(--text-soft); margin-bottom:14px;">O dia 24 está blindado para a Disney. Aqui estão 3 opções para rentabilizar as pontas soltas da viagem (dias 23 e 25), tendo em conta a logística das malas.</p>
+
+  <!-- Cenário A -->
+  <div class="scenario scenario-a" onclick="toggleScenario(this)">
+    <div class="scenario-header">
+      <div class="scenario-header-left">
+        <div class="scenario-letter">A</div>
+        <div>
+          <div class="scenario-title">O Pragmático</div>
+          <div class="scenario-subtitle">Periferia & Val d'Europe · sem malas no centro</div>
+        </div>
+      </div>
+      <span class="scenario-chevron">⌄</span>
+    </div>
+    <div class="scenario-body">
+      <div class="scenario-day">
+        <div class="scenario-day-title">Dia 23 · Chegada</div>
+        <p>Saída de Orly direta para a zona do hotel. Deixar as malas no hotelF1 (mesmo antes do check-in) e apanhar o <strong>RER A</strong> para <strong>Val d'Europe</strong> — a paragem imediatamente antes da Disney. Tem um dos maiores centros comerciais de França e o <strong>La Vallée Village</strong> (outlet premium). Almoçar e passear por lá.</p>
+      </div>
+      <div class="scenario-day">
+        <div class="scenario-day-title">Dia 25 · Regresso</div>
+        <p>Check-out tranquilo. Aproveitar a manhã no <strong>Disney Village</strong> (zona gratuita à porta dos parques, com lojas e restaurantes) e seguir para o aeroporto a meio da tarde.</p>
+      </div>
+      <div class="scenario-tip">💡 Lógica: evitar trânsito no centro e focar na linha de comboio que já vão usar.</div>
+    </div>
+  </div>
+
+  <!-- Cenário B -->
+  <div class="scenario scenario-b" onclick="toggleScenario(this)">
+    <div class="scenario-header">
+      <div class="scenario-header-left">
+        <div class="scenario-letter">B</div>
+        <div>
+          <div class="scenario-title">O Clássico</div>
+          <div class="scenario-subtitle">Ataque rápido a Paris · Torre Eiffel & Louvre</div>
+        </div>
+      </div>
+      <span class="scenario-chevron">⌄</span>
+    </div>
+    <div class="scenario-body">
+      <div class="scenario-day">
+        <div class="scenario-day-title">Dia 23 · Chegada</div>
+        <p>Em Orly, apanhar a <strong>Linha 14</strong> (Metro, direção <em>Saint-Denis - Pleyel</em>) e sair na <strong>Gare de Lyon</strong>. Largar as malas nos cacifos oficiais da estação (<em>Consignes Automatiques</em>, Hall 3, piso&nbsp;-1) — aprox. 7€–9€ por cacifo grande. Ficam com as mãos livres para o dia.</p>
+        <p style="margin-top:8px">Passear pelo centro: Sena, Notre-Dame, Louvre. Ao fim do dia, regressar à Gare de Lyon para levantar as malas e apanhar o <strong>RER A</strong> (direção <em>Marne-la-Vallée - Chessy</em>) até <strong>Torcy</strong>. Da estação, Uber/Bolt ao hotel em 5 min (~8€–10€ no total).</p>
+      </div>
+      <div class="scenario-day">
+        <div class="scenario-day-title">Dia 25 · Regresso</div>
+        <p>Check-out. Fazer o percurso inverso — talvez almoçar no <strong>Quartier Latin</strong> (Bairro Latino) antes de descer para Orly.</p>
+      </div>
+      <div class="scenario-tip">⚠️ Não usar o Google Maps para transportes — ao fim de semana o RER A tem obras frequentes e o algoritmo falha. Instalar <strong>Bonjour RATP</strong> ou <strong>Île-de-France Mobilités</strong>. Se o RER A estiver cortado na Gare de Lyon, o plano B é apanhar a Linha 14 até Saint-Lazare e trocar para a <strong>RER E</strong> até Val de Fontenay, onde se apanha o RER A já fora da zona de obras.</div>
+    </div>
+  </div>
+
+  <!-- Cenário C -->
+  <div class="scenario scenario-c" onclick="toggleScenario(this)">
+    <div class="scenario-header">
+      <div class="scenario-header-left">
+        <div class="scenario-letter">C</div>
+        <div>
+          <div class="scenario-title">O Cultural Otimizado</div>
+          <div class="scenario-subtitle">Montmartre + Château de Vincennes</div>
+        </div>
+      </div>
+      <span class="scenario-chevron">⌄</span>
+    </div>
+    <div class="scenario-body">
+      <div class="scenario-day">
+        <div class="scenario-day-title">Dia 23 · Chegada</div>
+        <p>Em Orly, apanhar a <strong>Linha 14</strong> (Metro, direção <em>Saint-Denis - Pleyel</em>) e sair na <strong>Gare de Lyon</strong>. Largar as malas nos cacifos oficiais da estação (<em>Consignes Automatiques</em>, Hall 3, piso&nbsp;-1) — aprox. 7€–9€ por cacifo grande. De seguida, explorar <strong>Montmartre</strong> a pé. Ao fim do dia, regressar à Gare de Lyon, levantar as malas e apanhar o <strong>RER A</strong> até <strong>Torcy</strong>. Da estação, Uber/Bolt ao hotel em 5 min (~8€–10€ no total).</p>
+      </div>
+      <div class="scenario-day">
+        <div class="scenario-day-title">Dia 25 · Regresso</div>
+        <p>Após o check-out, apanhar o RER A em direção a Paris, mas sair na paragem <strong>Vincennes</strong> — exatamente a meio do caminho. Lá têm o imponente <strong>Castelo de Vincennes</strong> e um bosque gigante. É uma paragem brutal, sem a confusão turística do centro, e que corta a viagem até ao aeroporto a meio.</p>
+      </div>
+      <div class="scenario-tip">⚠️ Não usar o Google Maps para transportes — ao fim de semana o RER A tem obras frequentes e o algoritmo falha. Instalar <strong>Bonjour RATP</strong> ou <strong>Île-de-France Mobilités</strong>. Se o RER A estiver cortado, usar a Linha 14 até Saint-Lazare e trocar para a <strong>RER E</strong> até Val de Fontenay, onde se entra no RER A já fora da zona de obras.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- PRINTS -->
+<div class="section">
+  <div class="section-title">🧾 Comprovativos & Simulações</div>
+
+  <div class="prints-grid">
+
+    <div class="print-thumb" onclick="openModal(0)">
+      <img src="Prints/VOO - bilhetes 4px.png" alt="Voo – 4 pessoas" loading="lazy" />
+      <div class="print-thumb-icon">✈️</div>
+      <div class="print-thumb-label">Voo · 4 pessoas</div>
+    </div>
+
+    <div class="print-thumb" onclick="openModal(1)">
+      <img src="Prints/VOO - bilhete 1px.png" alt="Voo – 1 pessoa" loading="lazy" />
+      <div class="print-thumb-icon">✈️</div>
+      <div class="print-thumb-label">Voo · 1 pessoa</div>
+    </div>
+
+    <div class="print-thumb" onclick="openModal(2)">
+      <img src="Prints/HOTEL - 2noites 4px.png" alt="Hotel – 2 noites" loading="lazy" />
+      <div class="print-thumb-icon">🏨</div>
+      <div class="print-thumb-label">Hotel · 2 noites</div>
+    </div>
+
+    <div class="print-thumb" onclick="openModal(3)">
+      <img src="Prints/DISNEYLAND - bilhetes.png" alt="Bilhetes Disneyland" loading="lazy" />
+      <div class="print-thumb-icon">🎟️</div>
+      <div class="print-thumb-label">Bilhetes Disney</div>
+    </div>
+
+    <div class="print-thumb" onclick="openModal(4)">
+      <img src="Prints/UBER - viagem de ida.png" alt="Uber – Ida" loading="lazy" />
+      <div class="print-thumb-icon">🚕</div>
+      <div class="print-thumb-label">Uber · Ida</div>
+    </div>
+
+    <div class="print-thumb" onclick="openModal(5)">
+      <img src="Prints/UBER - viagem de regresso.png" alt="Uber – Regresso" loading="lazy" />
+      <div class="print-thumb-icon">🚕</div>
+      <div class="print-thumb-label">Uber · Regresso</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>Operação Disneyland Paris · Maio 2026</strong><br>
+  Valores sujeitos a confirmação final
+</div>
+
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="handleModalClick(event)">
+  <button class="modal-close" onclick="closeModal()">✕</button>
+  <div class="modal-content">
+    <img class="modal-img" id="modal-img" src="" alt="" />
+    <div class="modal-caption" id="modal-caption"></div>
+    <div class="modal-nav">
+      <button id="modal-prev" onclick="modalNav(-1)">‹</button>
+      <button id="modal-next" onclick="modalNav(1)">›</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // ── Cost toggle
+  function setCostView(mode) {
+    const btns = document.querySelectorAll('.cost-toggle button');
+    if (mode === 'person') {
+      document.body.classList.add('per-person');
+      btns[0].classList.remove('active');
+      btns[1].classList.add('active');
+    } else {
+      document.body.classList.remove('per-person');
+      btns[0].classList.add('active');
+      btns[1].classList.remove('active');
+    }
+  }
+
+  // ── Scenarios accordion
+  function toggleScenario(el) {
+    el.classList.toggle('open');
+  }
+
+  // ── Modal
+  const prints = [
+    { src: 'Prints/VOO - bilhetes 4px.png',           caption: 'Voo · 4 pessoas' },
+    { src: 'Prints/VOO - bilhete 1px.png',            caption: 'Voo · 1 pessoa (referência de preço)' },
+    { src: 'Prints/HOTEL - 2noites 4px.png',          caption: 'Hotel · 2 noites · 4 pessoas' },
+    { src: 'Prints/DISNEYLAND - bilhetes.png',        caption: 'Bilhetes Disneyland Paris · 1 dia / 2 parques' },
+    { src: 'Prints/UBER - viagem de ida.png',         caption: 'Uber · Ida (Hotel → Disney)' },
+    { src: 'Prints/UBER - viagem de regresso.png',    caption: 'Uber · Regresso (Disney → Hotel)' },
+  ];
+  let currentModal = 0;
+
+  function openModal(idx) {
+    currentModal = idx;
+    renderModal();
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function renderModal() {
+    document.getElementById('modal-img').src = prints[currentModal].src;
+    document.getElementById('modal-img').alt = prints[currentModal].caption;
+    document.getElementById('modal-caption').textContent = prints[currentModal].caption;
+    document.getElementById('modal-prev').disabled = currentModal === 0;
+    document.getElementById('modal-next').disabled = currentModal === prints.length - 1;
+  }
+
+  function modalNav(dir) {
+    currentModal = Math.max(0, Math.min(prints.length - 1, currentModal + dir));
+    renderModal();
+  }
+
+  function handleModalClick(e) {
+    if (e.target === document.getElementById('modal')) closeModal();
+  }
+
+  // Keyboard nav
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('modal').classList.contains('open')) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft') modalNav(-1);
+    if (e.key === 'ArrowRight') modalNav(1);
+  });
+</script>
+
+</body>
+</html>
