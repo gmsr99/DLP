@@ -519,6 +519,14 @@
       border-radius: 20px;
     }
 
+    /* ── PAGES ── */
+    .page { display: none; }
+    .page.active {
+      display: block;
+      animation: fadeIn 0.18s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
     /* ── BOTTOM NAV ── */
     body {
       padding-bottom: calc(64px + env(safe-area-inset-bottom));
@@ -597,7 +605,7 @@
 
 
 <!-- CRONOGRAMA -->
-<div class="section" id="cronograma">
+<div class="section page" id="cronograma">
   <div class="section-title">📅 Cronograma</div>
 
   <div class="card">
@@ -696,7 +704,7 @@
 
 
 <!-- CUSTOS -->
-<div class="section" id="custos">
+<div class="section page" id="custos">
   <div class="section-title">💰 Breakdown Financeiro</div>
 
   <div class="cost-toggle">
@@ -792,7 +800,7 @@
 
 
 <!-- CENÁRIOS -->
-<div class="section" id="cenarios">
+<div class="section page" id="cenarios">
   <div class="section-title">🗺️ Cenários para os Dias Livres</div>
   <p style="font-size:13px; color:var(--text-soft); margin-bottom:14px;">O dia 24 está blindado para a Disney. Aqui estão 3 opções para rentabilizar as pontas soltas da viagem (dias 23 e 25), tendo em conta a logística das malas.</p>
 
@@ -875,7 +883,7 @@
 
 
 <!-- BILHÉTICA -->
-<div class="section" id="bilhetica">
+<div class="section page" id="bilhetica">
   <div class="section-title">🎫 Bilhética & Transportes</div>
   <p style="font-size:13px; color:var(--text-soft); margin-bottom:14px; line-height:1.6;">A Île-de-France simplificou o sistema em 2025: apenas 2 tipos de bilhete. Passes diários para turistas são financeiramente ineficientes para esta viagem — compra avulsa é a única via.</p>
 
@@ -995,7 +1003,7 @@
 
 
 <!-- PRINTS -->
-<div class="section" id="comprovativos">
+<div class="section page" id="comprovativos">
   <div class="section-title">🧾 Comprovativos & Simulações</div>
 
   <div class="prints-grid">
@@ -1146,30 +1154,27 @@
     if (e.key === 'ArrowRight') modalNav(1);
   });
 
-  // ── Bottom Nav active state
+  // ── Bottom Nav — SPA page switching
   const navLinks = document.querySelectorAll('.bottom-nav a');
-  const sections = ['cronograma','custos','cenarios','bilhetica','comprovativos']
-    .map(id => document.getElementById(id));
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(a => a.classList.remove('active'));
-        const active = document.querySelector(`.bottom-nav a[data-section="${entry.target.id}"]`);
-        if (active) active.classList.add('active');
-      }
-    });
-  }, { threshold: 0.25 });
-
-  sections.forEach(s => { if (s) observer.observe(s); });
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    navLinks.forEach(a => a.classList.remove('active'));
+    const page = document.getElementById(id);
+    if (page) page.classList.add('active');
+    const link = document.querySelector(`.bottom-nav a[data-section="${id}"]`);
+    if (link) link.classList.add('active');
+    window.scrollTo(0, 0);
+  }
 
   navLinks.forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
-      const target = document.getElementById(a.dataset.section);
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
+      showPage(a.dataset.section);
     });
   });
+
+  showPage('cronograma');
 
   // ── Service Worker
   if ('serviceWorker' in navigator) {
