@@ -6,7 +6,6 @@ const ASSETS = [
   './public/favicon.png',
   './public/icon-192.png',
   './public/disney-banner.jpg',
-  './Prints/VOO - bilhetes 4px.png',
   './Prints/VOO - bilhete 1px.png',
   './Prints/HOTEL - 2noites 4px.png',
   './Prints/DISNEYLAND - bilhetes.png',
