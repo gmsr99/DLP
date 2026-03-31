@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Operação Disneyland Paris 🎢</title>
   <link rel="icon" type="image/png" href="public/favicon.png" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1a56a0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="DLP 2026" />
+  <link rel="apple-touch-icon" href="public/favicon.png" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -662,8 +668,8 @@
         </div>
       </div>
       <span class="cost-value">
-        <span class="val-total">564,00€</span>
-        <span class="val-person">141,00€</span>
+        <span class="val-total">616,00€</span>
+        <span class="val-person">154,00€</span>
       </span>
     </div>
     <div class="cost-row">
@@ -721,8 +727,8 @@
     <div class="cost-total-row">
       <span class="label">Total Estimado</span>
       <span class="value">
-        <span class="val-total">1.438,10€</span>
-        <span class="val-person">359,53€</span>
+        <span class="val-total">1.490,10€</span>
+        <span class="val-person">372,53€</span>
       </span>
     </div>
   </div>
@@ -731,10 +737,10 @@
   <div class="cousin-card">
     <h3>🎯 Fundo "Cousin's Duty"</h3>
     <p>Exclui propositadamente 1 pessoa · cobre Voos + Hotel + Disney para 3 pax</p>
-    <div class="cousin-row"><span>✈️ Voos (3 × 141,00€)</span><span>423,00€</span></div>
+    <div class="cousin-row"><span>✈️ Voos (3 × 154,00€)</span><span>462,00€</span></div>
     <div class="cousin-row"><span>🏨 Hotel (3 × 57,05€)</span><span>171,15€</span></div>
     <div class="cousin-row"><span>🎟️ Disney (3 × 134,00€)</span><span>402,00€</span></div>
-    <div class="cousin-total"><span>Total "Cousin's Duty"</span><span>996,15€</span></div>
+    <div class="cousin-total"><span>Total "Cousin's Duty"</span><span>1.035,15€</span></div>
   </div>
 </div>
 
@@ -1076,6 +1082,11 @@
     if (e.key === 'ArrowLeft') modalNav(-1);
     if (e.key === 'ArrowRight') modalNav(1);
   });
+
+  // ── Service Worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js');
+  }
 </script>
 
 </body>
