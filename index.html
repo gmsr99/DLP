@@ -272,42 +272,6 @@
       color: var(--blue);
     }
 
-    /* Cousin's Duty */
-    .cousin-card {
-      background: var(--gold-light);
-      border: 1px solid #e8d8a0;
-      border-radius: var(--radius);
-      padding: 16px;
-      margin-top: 10px;
-    }
-    .cousin-card h3 {
-      font-size: 14px;
-      font-weight: 700;
-      color: #7a5c00;
-      margin-bottom: 4px;
-    }
-    .cousin-card p {
-      font-size: 12px;
-      color: #a07820;
-      margin-bottom: 12px;
-    }
-    .cousin-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-      padding: 4px 0;
-      color: #5a4000;
-    }
-    .cousin-total {
-      border-top: 1px solid #e8d8a0;
-      margin-top: 8px;
-      padding-top: 8px;
-      font-weight: 800;
-      font-size: 16px;
-      color: #7a5c00;
-      display: flex;
-      justify-content: space-between;
-    }
 
     /* ── CENÁRIOS ── */
     .scenario {
@@ -519,6 +483,36 @@
       border-radius: 20px;
     }
 
+    /* ── SURPRESA BANNER ── */
+    .surprise-banner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #fff3cd;
+      border-top: 3px solid #f59e0b;
+      border-bottom: 3px solid #f59e0b;
+      padding: 14px 16px;
+    }
+    .surprise-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .surprise-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .surprise-text strong {
+      font-size: 14px;
+      font-weight: 800;
+      color: #92400e;
+    }
+    .surprise-text span {
+      font-size: 13px;
+      color: #b45309;
+      line-height: 1.4;
+    }
+
     /* ── PAGES ── */
     .page { display: none; }
     .page.active {
@@ -603,6 +597,15 @@
   </div>
 </div>
 
+
+<!-- SURPRESA BANNER -->
+<div class="surprise-banner">
+  <div class="surprise-icon">🤫</div>
+  <div class="surprise-text">
+    <strong>Isto é uma surpresa!</strong>
+    <span>A Leonor Álvaro não pode saber. Não partilhes este link com ela.</span>
+  </div>
+</div>
 
 <!-- CRONOGRAMA -->
 <div class="section page" id="cronograma">
@@ -787,15 +790,6 @@
     </div>
   </div>
 
-  <!-- Cousin's Duty -->
-  <div class="cousin-card">
-    <h3>🎯 Fundo "Cousin's Duty"</h3>
-    <p>Exclui propositadamente 1 pessoa · cobre Voos + Hotel + Disney para 3 pax</p>
-    <div class="cousin-row"><span>✈️ Voos (3 × 154,00€)</span><span>462,00€</span></div>
-    <div class="cousin-row"><span>🏨 Hotel (3 × 57,05€)</span><span>171,15€</span></div>
-    <div class="cousin-row"><span>🎟️ Disney (3 × 131,00€)</span><span>393,00€</span></div>
-    <div class="cousin-total"><span>Total "Cousin's Duty"</span><span>1.026,15€</span></div>
-  </div>
 </div>
 
 
