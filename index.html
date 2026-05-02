@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Operação Disneyland Paris 🎢</title>
+  <title>Disneyland Paris 2026 🎢</title>
   <link rel="icon" type="image/png" href="public/favicon.png" />
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#1a56a0" />
@@ -23,6 +23,8 @@
       --green-light: #e8f5ee;
       --red: #c0392b;
       --red-light: #fdecea;
+      --purple: #6d28d9;
+      --purple-light: #ede9fe;
       --grey: #6b7280;
       --grey-light: #f3f4f6;
       --border: #e5e7eb;
@@ -41,6 +43,7 @@
       line-height: 1.6;
       max-width: 480px;
       margin: 0 auto;
+      padding-bottom: calc(64px + env(safe-area-inset-bottom));
     }
 
     /* ── HEADER ── */
@@ -102,6 +105,22 @@
       opacity: 0.7;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+    }
+    .countdown-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 14px;
+    }
+    .countdown-pill .num {
+      font-size: 17px;
+      font-weight: 800;
     }
 
     /* ── SECTIONS ── */
@@ -181,97 +200,9 @@
       font-size: 12px;
       margin-top: 2px;
     }
-    .highlight-row {
-      background: #fffbeb;
-    }
+    .highlight-row { background: #fffbeb; }
     .highlight-row .timeline-dot { background: var(--gold); }
     .highlight-row .timeline-time { color: var(--gold); }
-
-    /* ── CUSTOS ── */
-    .cost-toggle {
-      display: flex;
-      background: var(--grey-light);
-      border-radius: 10px;
-      padding: 3px;
-      margin-bottom: 14px;
-    }
-    .cost-toggle button {
-      flex: 1;
-      border: none;
-      background: none;
-      padding: 7px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-soft);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .cost-toggle button.active {
-      background: var(--white);
-      color: var(--blue);
-      box-shadow: 0 1px 4px rgba(0,0,0,0.12);
-    }
-    .cost-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border);
-    }
-    .cost-row:last-child { border-bottom: none; }
-    .cost-row-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .cost-icon {
-      font-size: 20px;
-      width: 32px;
-      text-align: center;
-    }
-    .cost-label {
-      font-size: 14px;
-      font-weight: 500;
-    }
-    .cost-label small {
-      display: block;
-      color: var(--text-soft);
-      font-size: 11px;
-    }
-    .cost-value {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--blue);
-    }
-    .cost-optional {
-      font-size: 10px;
-      color: var(--grey);
-      background: var(--grey-light);
-      padding: 1px 6px;
-      border-radius: 6px;
-      margin-left: 6px;
-      vertical-align: middle;
-    }
-    .cost-total-row {
-      background: var(--blue-light);
-      padding: 14px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-radius: 0 0 var(--radius) var(--radius);
-    }
-    .cost-total-row .label {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--blue);
-    }
-    .cost-total-row .value {
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--blue);
-    }
-
 
     /* ── CENÁRIOS ── */
     .scenario {
@@ -310,14 +241,8 @@
     .scenario-a .scenario-letter { background: #dbeafe; color: #1d4ed8; }
     .scenario-b .scenario-letter { background: #dcfce7; color: #166534; }
     .scenario-c .scenario-letter { background: #fae8ff; color: #7c3aed; }
-    .scenario-title {
-      font-size: 14px;
-      font-weight: 700;
-    }
-    .scenario-subtitle {
-      font-size: 12px;
-      color: var(--text-soft);
-    }
+    .scenario-title { font-size: 14px; font-weight: 700; }
+    .scenario-subtitle { font-size: 12px; color: var(--text-soft); }
     .scenario-chevron {
       font-size: 18px;
       color: var(--grey);
@@ -330,9 +255,7 @@
       border-top: 1px solid var(--border);
     }
     .scenario.open .scenario-body { display: block; }
-    .scenario-day {
-      margin-top: 12px;
-    }
+    .scenario-day { margin-top: 12px; }
     .scenario-day-title {
       font-size: 12px;
       font-weight: 700;
@@ -341,11 +264,7 @@
       color: var(--grey);
       margin-bottom: 6px;
     }
-    .scenario-day p {
-      font-size: 14px;
-      color: var(--text);
-      line-height: 1.6;
-    }
+    .scenario-day p { font-size: 14px; color: var(--text); line-height: 1.6; }
     .scenario-day p strong { color: var(--text); }
     .scenario-tip {
       background: var(--grey-light);
@@ -470,7 +389,6 @@
     .footer strong { color: var(--text-soft); }
 
     /* ── MISC ── */
-    .spacer { height: 1px; }
     .chip {
       display: inline-flex;
       align-items: center;
@@ -482,36 +400,231 @@
       padding: 4px 10px;
       border-radius: 20px;
     }
-
-    /* ── SURPRESA BANNER ── */
-    .surprise-banner {
+    .info-row {
       display: flex;
       align-items: center;
-      gap: 12px;
-      background: #fff3cd;
-      border-top: 3px solid #f59e0b;
-      border-bottom: 3px solid #f59e0b;
-      padding: 14px 16px;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
     }
-    .surprise-icon {
-      font-size: 28px;
+    .info-row:last-child { border-bottom: none; }
+    .info-row-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .info-icon { font-size: 20px; width: 32px; text-align: center; }
+    .info-label { font-size: 14px; font-weight: 500; }
+    .info-label small { display: block; color: var(--text-soft); font-size: 11px; }
+    .info-value { font-size: 14px; font-weight: 700; color: var(--blue); text-align: right; }
+
+    /* ── DISNEY PAGE ── */
+    .priority-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 8px;
+      margin-left: 6px;
+      vertical-align: middle;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .priority-hot { background: #fee2e2; color: #b91c1c; }
+    .priority-go { background: #dcfce7; color: #15803d; }
+    .priority-skip { background: var(--grey-light); color: var(--grey); }
+
+    .atraction-list { list-style: none; padding: 0; margin: 0; }
+    .atraction-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+      gap: 10px;
+    }
+    .atraction-item:last-child { border-bottom: none; }
+    .atraction-name { font-size: 14px; font-weight: 600; flex: 1; }
+    .atraction-name small { display: block; font-size: 12px; font-weight: 400; color: var(--text-soft); }
+    .atraction-tag {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 8px;
+      white-space: nowrap;
       flex-shrink: 0;
     }
-    .surprise-text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .surprise-text strong {
-      font-size: 14px;
-      font-weight: 800;
-      color: #92400e;
-    }
-    .surprise-text span {
+    .tag-rush { background: #fee2e2; color: #b91c1c; }
+    .tag-anytime { background: #dbeafe; color: #1d4ed8; }
+    .tag-free { background: #dcfce7; color: #15803d; }
+    .tag-skip { background: var(--grey-light); color: var(--grey); }
+
+    .tip-box {
+      background: var(--gold-light);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 10px 14px;
       font-size: 13px;
-      color: #b45309;
-      line-height: 1.4;
+      color: #78350f;
+      line-height: 1.6;
+      margin-top: 10px;
     }
+    .tip-box + .tip-box { margin-top: 8px; }
+
+    /* ── CHECKLIST ── */
+    .check-category {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .check-cat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: var(--grey-light);
+      border-bottom: 1px solid var(--border);
+    }
+    .check-cat-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--grey);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .check-cat-count {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--grey);
+      background: var(--border);
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+    .check-cat-count.done { background: var(--green-light); color: var(--green); }
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .check-item:last-child { border-bottom: none; }
+    .check-item:active { background: var(--grey-light); }
+    .check-item input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      flex-shrink: 0;
+      position: relative;
+      transition: all 0.15s;
+    }
+    .check-item input[type="checkbox"]:checked {
+      background: var(--green);
+      border-color: var(--green);
+    }
+    .check-item input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      left: 4px; top: 1px;
+      width: 8px; height: 12px;
+      border: 2px solid white;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
+    }
+    .check-item-text {
+      font-size: 14px;
+      color: var(--text);
+      flex: 1;
+      transition: color 0.15s;
+    }
+    .check-item-text small { display: block; font-size: 12px; color: var(--text-soft); margin-top: 1px; }
+    .check-item.checked .check-item-text { color: var(--grey); text-decoration: line-through; }
+
+    .checklist-progress {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .progress-ring {
+      width: 52px; height: 52px;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .progress-ring svg { transform: rotate(-90deg); }
+    .progress-ring .track { stroke: var(--border); }
+    .progress-ring .fill { stroke: var(--green); stroke-linecap: round; transition: stroke-dashoffset 0.4s ease; }
+    .progress-ring .label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .progress-info { flex: 1; }
+    .progress-info .title { font-size: 15px; font-weight: 700; }
+    .progress-info .sub { font-size: 13px; color: var(--text-soft); }
+    .reset-btn {
+      font-size: 12px;
+      color: var(--grey);
+      background: var(--grey-light);
+      border: none;
+      padding: 5px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .reset-btn:active { background: var(--border); }
+
+    /* ── BILHÉTICA ── */
+    .cost-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cost-row:last-child { border-bottom: none; }
+    .cost-row-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cost-icon { font-size: 20px; width: 32px; text-align: center; }
+    .cost-label { font-size: 14px; font-weight: 500; }
+    .cost-label small { display: block; color: var(--text-soft); font-size: 11px; }
+    .cost-value { font-size: 15px; font-weight: 700; color: var(--blue); }
+    .cost-total-row {
+      background: var(--blue-light);
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 0 0 var(--radius) var(--radius);
+    }
+    .cost-total-row .label { font-size: 14px; font-weight: 700; color: var(--blue); }
+    .cost-total-row .value { font-size: 22px; font-weight: 800; color: var(--blue); }
 
     /* ── PAGES ── */
     .page { display: none; }
@@ -522,9 +635,6 @@
     @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
     /* ── BOTTOM NAV ── */
-    body {
-      padding-bottom: calc(64px + env(safe-area-inset-bottom));
-    }
     .bottom-nav {
       position: fixed;
       bottom: 0; left: 0; right: 0;
@@ -563,24 +673,16 @@
       font-weight: 600;
       letter-spacing: 0.02em;
     }
-    .bottom-nav a.active {
-      color: var(--blue);
-    }
-
-    /* hide values */
-    .val-total { }
-    .val-person { display: none; }
-    body.per-person .val-total { display: none; }
-    body.per-person .val-person { display: inline; }
+    .bottom-nav a.active { color: var(--blue); }
   </style>
 </head>
 <body>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">✅ Planeamento Otimizado</div>
-  <h1>🎢 Operação<br>Disneyland Paris</h1>
-  <p class="hero-sub">Lisboa ✈️ Paris-Orly · 23–25 Maio 2026</p>
+  <div class="hero-badge">🎢 Viagem Confirmada</div>
+  <h1>Disneyland Paris<br>Maio 2026</h1>
+  <p class="hero-sub">Lisboa ✈️ Paris-Orly · 23–25 Maio</p>
   <div class="hero-meta">
     <div class="hero-meta-item">
       <span class="val">4</span>
@@ -591,23 +693,21 @@
       <span class="lbl">Dias</span>
     </div>
     <div class="hero-meta-item">
-      <span class="val">&lt;400€</span>
-      <span class="lbl">Por pessoa</span>
+      <span class="val">2</span>
+      <span class="lbl">Parques</span>
     </div>
   </div>
-</div>
-
-
-<!-- SURPRESA BANNER -->
-<div class="surprise-banner">
-  <div class="surprise-icon">🤫</div>
-  <div class="surprise-text">
-    <strong>Isto é uma surpresa!</strong>
-    <span>A Leonor Álvaro não pode saber. Não partilhes este link com ela.</span>
+  <div class="countdown-pill" id="countdown-pill">
+    <span>✈️</span>
+    <span class="num" id="countdown-num">—</span>
+    <span id="countdown-label">dias para a viagem</span>
   </div>
 </div>
 
-<!-- CRONOGRAMA -->
+
+<!-- ════════════════════════════════════════
+     PÁGINA: CRONOGRAMA
+     ════════════════════════════════════════ -->
 <div class="section page" id="cronograma">
   <div class="section-title">📅 Cronograma</div>
 
@@ -656,11 +756,19 @@
       </div>
     </div>
     <div class="timeline-item highlight-row">
+      <span class="timeline-time">09:30</span>
+      <div class="timeline-dot"></div>
+      <div class="timeline-text">
+        <strong>Abertura dos Parques</strong>
+        <small>Rope drop — entrar imediatamente pelos Studios</small>
+      </div>
+    </div>
+    <div class="timeline-item highlight-row">
       <span class="timeline-time">🌞</span>
       <div class="timeline-dot"></div>
       <div class="timeline-text">
         <strong>Dia Todo nos 2 Parques</strong>
-        <small>Bilhetes datados · Parque Disneyland + Walt Disney Studios</small>
+        <small>Bilhetes datados · Disneyland Park + Walt Disney Studios</small>
       </div>
     </div>
     <div class="timeline-item highlight-row">
@@ -703,185 +811,324 @@
       </div>
     </div>
   </div>
+
+  <!-- Cenários rápidos -->
+  <div style="margin-top:20px">
+    <div class="section-title">🗺️ Dias Livres (23 e 25)</div>
+    <p style="font-size:13px; color:var(--text-soft); margin-bottom:14px;">O dia 24 está blindado para a Disney. Aqui estão 3 opções para rentabilizar as pontas soltas, tendo em conta a logística das malas.</p>
+
+    <div class="scenario scenario-a" onclick="toggleScenario(this)">
+      <div class="scenario-header">
+        <div class="scenario-header-left">
+          <div class="scenario-letter">A</div>
+          <div>
+            <div class="scenario-title">O Pragmático</div>
+            <div class="scenario-subtitle">Periferia & Val d'Europe · sem malas no centro</div>
+          </div>
+        </div>
+        <span class="scenario-chevron">⌄</span>
+      </div>
+      <div class="scenario-body">
+        <div class="scenario-day">
+          <div class="scenario-day-title">Dia 23 · Chegada</div>
+          <p>Saída de Orly direta para a zona do hotel. Deixar as malas no hotelF1 (mesmo antes do check-in) e apanhar o <strong>RER A</strong> para <strong>Val d'Europe</strong> — a paragem imediatamente antes da Disney. Tem um dos maiores centros comerciais de França e o <strong>La Vallée Village</strong> (outlet premium). Almoçar e passear por lá.</p>
+        </div>
+        <div class="scenario-day">
+          <div class="scenario-day-title">Dia 25 · Regresso</div>
+          <p>Check-out tranquilo. Aproveitar a manhã no <strong>Disney Village</strong> (zona gratuita à porta dos parques, com lojas e restaurantes) e seguir para o aeroporto a meio da tarde.</p>
+        </div>
+        <div class="scenario-tip">💡 Lógica: evitar trânsito no centro e focar na linha de comboio que já vão usar.</div>
+      </div>
+    </div>
+
+    <div class="scenario scenario-b" onclick="toggleScenario(this)">
+      <div class="scenario-header">
+        <div class="scenario-header-left">
+          <div class="scenario-letter">B</div>
+          <div>
+            <div class="scenario-title">O Clássico</div>
+            <div class="scenario-subtitle">Ataque rápido a Paris · Torre Eiffel & Louvre</div>
+          </div>
+        </div>
+        <span class="scenario-chevron">⌄</span>
+      </div>
+      <div class="scenario-body">
+        <div class="scenario-day">
+          <div class="scenario-day-title">Dia 23 · Chegada</div>
+          <p>Em Orly, apanhar a <strong>Linha 14</strong> (direção <em>Saint-Denis - Pleyel</em>) e sair na <strong>Gare de Lyon</strong>. Largar as malas nos cacifos oficiais da estação (<em>Consignes Automatiques</em>, Hall 3, piso&nbsp;-1) — aprox. 7€–9€ por cacifo grande.</p>
+          <p style="margin-top:8px">Passear pelo centro: Sena, Notre-Dame, Louvre. Ao fim do dia, regressar à Gare de Lyon, levantar as malas e apanhar o <strong>RER A</strong> (direção <em>Marne-la-Vallée - Chessy</em>) até <strong>Torcy</strong>. Da estação, Uber ao hotel em 5 min (~8€–10€ total).</p>
+        </div>
+        <div class="scenario-day">
+          <div class="scenario-day-title">Dia 25 · Regresso</div>
+          <p>Check-out. Percurso inverso — talvez almoçar no <strong>Quartier Latin</strong> (Bairro Latino) antes de descer para Orly.</p>
+        </div>
+        <div class="scenario-tip">⚠️ Não usar o Google Maps para transportes. Instalar <strong>Bonjour RATP</strong> ou <strong>Île-de-France Mobilités</strong> — são as únicas que refletem obras ao minuto.</div>
+      </div>
+    </div>
+
+    <div class="scenario scenario-c" onclick="toggleScenario(this)">
+      <div class="scenario-header">
+        <div class="scenario-header-left">
+          <div class="scenario-letter">C</div>
+          <div>
+            <div class="scenario-title">O Cultural Otimizado</div>
+            <div class="scenario-subtitle">Montmartre + Château de Vincennes</div>
+          </div>
+        </div>
+        <span class="scenario-chevron">⌄</span>
+      </div>
+      <div class="scenario-body">
+        <div class="scenario-day">
+          <div class="scenario-day-title">Dia 23 · Chegada</div>
+          <p>Orly → Linha 14 → Gare de Lyon (cacifos). Explorar <strong>Montmartre</strong> a pé — a colina com o Sacré-Cœur, ruas de artistas e a vista mais bonita de Paris. Ao fim do dia, malas e RER A até Torcy.</p>
+        </div>
+        <div class="scenario-day">
+          <div class="scenario-day-title">Dia 25 · Regresso</div>
+          <p>Após check-out, apanhar o RER A em direção a Paris mas sair na paragem <strong>Vincennes</strong>. Lá têm o imponente <strong>Castelo de Vincennes</strong> e um bosque gigante — sem a confusão do centro, a meio do caminho até ao aeroporto.</p>
+        </div>
+        <div class="scenario-tip">⚠️ Se o RER A estiver cortado, usar a Linha 14 até Saint-Lazare e trocar para a <strong>RER E</strong> até Val de Fontenay, onde se entra no RER A já fora da zona de obras.</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
-<!-- CUSTOS -->
-<div class="section page" id="custos">
-  <div class="section-title">💰 Breakdown Financeiro</div>
+<!-- ════════════════════════════════════════
+     PÁGINA: DISNEY
+     ════════════════════════════════════════ -->
+<div class="section page" id="disney">
+  <div class="section-title">🎢 Guia Disney · 24 de Maio</div>
 
-  <div class="cost-toggle">
-    <button class="active" onclick="setCostView('total')">Total (4 pax)</button>
-    <button onclick="setCostView('person')">Por Pessoa</button>
-  </div>
-
+  <!-- Informações base -->
   <div class="card">
-    <div class="cost-row">
-      <div class="cost-row-left">
-        <span class="cost-icon">✈️</span>
-        <div class="cost-label">
-          Voos
-          <small>LIS ↔ ORY · 4 pessoas</small>
-        </div>
+    <div class="info-row">
+      <div class="info-row-left">
+        <span class="info-icon">🕘</span>
+        <div class="info-label">Abertura dos Parques<small>Disneyland Park + Walt Disney Studios</small></div>
       </div>
-      <span class="cost-value">
-        <span class="val-total">616,00€</span>
-        <span class="val-person">154,00€</span>
-      </span>
+      <span class="info-value">09:30</span>
     </div>
-    <div class="cost-row">
-      <div class="cost-row-left">
-        <span class="cost-icon">🏨</span>
-        <div class="cost-label">
-          Hotel
-          <small>2 noites · 2 quartos</small>
-        </div>
+    <div class="info-row">
+      <div class="info-row-left">
+        <span class="info-icon">🌙</span>
+        <div class="info-label">Fecho Disneyland Park<small>Espectáculo final por volta das 22:30</small></div>
       </div>
-      <span class="cost-value">
-        <span class="val-total">228,20€</span>
-        <span class="val-person">57,05€</span>
-      </span>
+      <span class="info-value">23:00</span>
     </div>
-    <div class="cost-row">
-      <div class="cost-row-left">
-        <span class="cost-icon">🎟️</span>
-        <div class="cost-label">
-          Bilhetes Disney
-          <small>1 dia · 2 parques · 4 px</small>
-        </div>
+    <div class="info-row">
+      <div class="info-row-left">
+        <span class="info-icon">🌙</span>
+        <div class="info-label">Fecho Walt Disney Studios<small>Fechar mais cedo — priorizar de manhã</small></div>
       </div>
-      <span class="cost-value">
-        <span class="val-total">524,00€</span>
-        <span class="val-person">131,00€</span>
-      </span>
+      <span class="info-value">21:00</span>
     </div>
-    <div class="cost-row">
-      <div class="cost-row-left">
-        <span class="cost-icon">🚕</span>
-        <div class="cost-label">
-          Uber Disney
-          <small>Ida e volta · hotel ↔ parque</small>
-        </div>
+    <div class="info-row">
+      <div class="info-row-left">
+        <span class="info-icon">📱</span>
+        <div class="info-label">App Essencial<small>Tempos de espera em tempo real + Premier Access</small></div>
       </div>
-      <span class="cost-value">
-        <span class="val-total">65,90€</span>
-        <span class="val-person">16,48€</span>
-      </span>
+      <span class="info-value" style="color:var(--green);">Disneyland Paris</span>
     </div>
-    <div class="cost-row">
-      <div class="cost-row-left">
-        <span class="cost-icon">🥐</span>
-        <div class="cost-label">
-          Pequeno-almoço <span class="cost-optional">opcional</span>
-          <small>5,50€/dia × 2 dias × 4 px</small>
-        </div>
+    <div class="info-row">
+      <div class="info-row-left">
+        <span class="info-icon">🌡️</span>
+        <div class="info-label">Tempo esperado<small>Final de Maio em Paris</small></div>
       </div>
-      <span class="cost-value">
-        <span class="val-total">44,00€</span>
-        <span class="val-person">11,00€</span>
-      </span>
-    </div>
-    <div class="cost-total-row">
-      <span class="label">Total Estimado</span>
-      <span class="value">
-        <span class="val-total">1.478,10€</span>
-        <span class="val-person">369,53€</span>
-      </span>
+      <span class="info-value">18–23°C</span>
     </div>
   </div>
 
+  <!-- Estratégia -->
+  <div class="tip-box" style="margin-top:14px;">
+    <strong>🎯 Estratégia base</strong><br>
+    Domingo de maio é um dos dias mais concorridos do ano. Chegar antes da abertura é obrigatório. Entrar pelos <strong>Walt Disney Studios</strong> primeiro (fila menor no início, fecha mais cedo) e mudar para o Disneyland Park a meio da tarde.
+  </div>
+  <div class="tip-box">
+    <strong>🏃 Regra de Ouro: Rope Drop</strong><br>
+    Estar na fila de entrada às <strong>09:00</strong> (30 min antes da abertura). Nas primeiras 2 horas as filas das atrações principais têm menos de 15 min. A partir das 11h disparam para 60–90 min.
+  </div>
+
+  <!-- Walt Disney Studios -->
+  <div style="margin-top:18px">
+    <div class="section-title">🎬 Walt Disney Studios — manhã</div>
+    <div class="card">
+      <ul class="atraction-list">
+        <li class="atraction-item">
+          <div class="atraction-name">
+            Ratatouille
+            <small>Aventura em miniatura pela cozinha do Gusteau</small>
+          </div>
+          <span class="atraction-tag tag-rush">1.ª prioridade</span>
+        </li>
+        <li class="atraction-item">
+          <div class="atraction-name">
+            Crush's Coaster
+            <small>Montanha-russa aquática giratória — fila sempre enorme</small>
+          </div>
+          <span class="atraction-tag tag-rush">1.ª prioridade</span>
+        </li>
+        <li class="atraction-item">
+          <div class="atraction-name">
+            Avengers Assemble: Flight Force
+            <small>Montanha-russa dos Avengers — nova e brutal</small>
+          </div>
+          <span class="atraction-tag tag-rush">Cedo</span>
+        </li>
+        <li class="atraction-item">
+          <div class="atraction-name">
+            Spider-Man W.E.B. Adventure
+            <small>Jogo interativo — excelente para grupos</small>
+          </div>
+          <span class="atraction-tag tag-anytime">Qualquer hora</span>
+        </li>
+        <li class="atraction-item">
+          <div class="atraction-name">
+            Cars Quatre Roues Rallye
+            <small>Rápida e divertida, fila anda depressa</small>
+          </div>
+          <span class="atraction-tag tag-anytime">Qualquer hora</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Disneyland Park -->
+  <div style="margin-top:18px">
+    <div class="section-title">🏰 Disneyland Park — tarde</div>
+    <div class="card">
+      <ul class="atraction-list">
+        <li class="atraction-item">
+          <div class="atraction-name">
+            Big Thunder Mountain
+            <small>Mina encantada — clássico obrigatório</small>
+          </div>
+          <span class="atraction-tag tag-rush">Cedo ou noite</span>
+        </li>
+        <li class="atraction-item">
+          <div class="atraction-name">
+            Hyperspace Mountain
+            <small>Star Wars na Space Mountain — muito popular</small>
+          </div>
+          <span class="atraction-tag tag-rush">Cedo ou noite</span>
+        </li>
+        <li class="atraction-item">
+          <div class="atraction-name">
+            Indiana Jones et le Temple du Péril
+            <small>Montanha-russa de loop — fila anda bem</small>
+          </div>
+          <span class="atraction-tag tag-anytime">Qualquer hora</span>
+        </li>
+        <li class="atraction-item">
+          <div class="atraction-name">
+            Pirates of the Caribbean
+            <small>Clássico atemporal — fila raramente passa 20 min</small>
+          </div>
+          <span class="atraction-tag tag-free">Rápido</span>
+        </li>
+        <li class="atraction-item">
+          <div class="atraction-name">
+            Phantom Manor
+            <small>A melhor "Haunted Mansion" do mundo — não perder</small>
+          </div>
+          <span class="atraction-tag tag-free">Rápido</span>
+        </li>
+        <li class="atraction-item">
+          <div class="atraction-name">
+            Star Wars: Hyperspace Mountain
+            <small>Já listado acima — double-check à noite com menos fila</small>
+          </div>
+          <span class="atraction-tag tag-anytime">Noite</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Premier Access -->
+  <div style="margin-top:18px">
+    <div class="section-title">⚡ Premier Access</div>
+    <div class="card">
+      <div style="padding:14px 16px;">
+        <p style="font-size:14px; line-height:1.65; color:var(--text);">O <strong>Premier Access</strong> é o sistema pago de fura-filas (comprado na app). Não é obrigatório se chegarem cedo — as primeiras 2h do dia eliminam a necessidade para a maioria das atrações.</p>
+        <p style="font-size:14px; line-height:1.65; color:var(--text); margin-top:8px;">Se quiserem, comprem apenas para <strong>Ratatouille</strong> e <strong>Crush's Coaster</strong> — são os únicos onde a fila pode ultrapassar 90 minutos mesmo cedo.</p>
+        <div class="tip-box" style="margin-top:10px;">
+          💡 O Premier Access individual custa ~8–15€ por pessoa por atração, e é adicionado diretamente ao bilhete na app Disneyland Paris.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comer -->
+  <div style="margin-top:18px">
+    <div class="section-title">🍔 Onde Comer</div>
+    <div class="card">
+      <div class="info-row">
+        <div class="info-row-left">
+          <span class="info-icon">🥪</span>
+          <div class="info-label">Pequeno-almoço<small>Barras de cereais/fruta no hotel — mais rápido</small></div>
+        </div>
+        <span class="info-value" style="font-size:12px; color:var(--green);">Poupar tempo</span>
+      </div>
+      <div class="info-row">
+        <div class="info-row-left">
+          <span class="info-icon">🌮</span>
+          <div class="info-label">Almoço<small>Restaurantes nos parques — comer às 11:30 antes da pressa</small></div>
+        </div>
+        <span class="info-value" style="font-size:12px; color:var(--gold);">11:30 🕦</span>
+      </div>
+      <div class="info-row">
+        <div class="info-row-left">
+          <span class="info-icon">🍕</span>
+          <div class="info-label">Disney Village<small>Zona gratuita à entrada — jantar fora dos parques é mais barato</small></div>
+        </div>
+        <span class="info-value" style="font-size:12px;">Jantar</span>
+      </div>
+      <div class="info-row">
+        <div class="info-row-left">
+          <span class="info-icon">💧</span>
+          <div class="info-label">Água<small>Pedir água gratuita ("eau du robinet") em qualquer restaurante</small></div>
+        </div>
+        <span class="info-value" style="font-size:12px; color:var(--green);">Grátis</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Espectáculos -->
+  <div style="margin-top:18px; margin-bottom:8px;">
+    <div class="section-title">🎆 Não Perder</div>
+    <div class="card">
+      <div class="info-row">
+        <div class="info-row-left">
+          <span class="info-icon">🏰</span>
+          <div class="info-label">Disney Illuminations<small>Fogo de artifício + projeções no Castelo — espetáculo final</small></div>
+        </div>
+        <span class="info-value">~22:30</span>
+      </div>
+      <div class="info-row">
+        <div class="info-row-left">
+          <span class="info-icon">🎭</span>
+          <div class="info-label">Parada de Dia<small>Verificar horário na app — normalmente 15h–16h30</small></div>
+        </div>
+        <span class="info-value">App</span>
+      </div>
+      <div class="info-row">
+        <div class="info-row-left">
+          <span class="info-icon">📸</span>
+          <div class="info-label">Foto com o Castelo<small>Logo de manhã — à tarde está demasiado cheio de gente</small></div>
+        </div>
+        <span class="info-value">09:30–10h</span>
+      </div>
+    </div>
+  </div>
 </div>
 
 
-<!-- CENÁRIOS -->
-<div class="section page" id="cenarios">
-  <div class="section-title">🗺️ Cenários para os Dias Livres</div>
-  <p style="font-size:13px; color:var(--text-soft); margin-bottom:14px;">O dia 24 está blindado para a Disney. Aqui estão 3 opções para rentabilizar as pontas soltas da viagem (dias 23 e 25), tendo em conta a logística das malas.</p>
-
-  <!-- Cenário A -->
-  <div class="scenario scenario-a" onclick="toggleScenario(this)">
-    <div class="scenario-header">
-      <div class="scenario-header-left">
-        <div class="scenario-letter">A</div>
-        <div>
-          <div class="scenario-title">O Pragmático</div>
-          <div class="scenario-subtitle">Periferia & Val d'Europe · sem malas no centro</div>
-        </div>
-      </div>
-      <span class="scenario-chevron">⌄</span>
-    </div>
-    <div class="scenario-body">
-      <div class="scenario-day">
-        <div class="scenario-day-title">Dia 23 · Chegada</div>
-        <p>Saída de Orly direta para a zona do hotel. Deixar as malas no hotelF1 (mesmo antes do check-in) e apanhar o <strong>RER A</strong> para <strong>Val d'Europe</strong> — a paragem imediatamente antes da Disney. Tem um dos maiores centros comerciais de França e o <strong>La Vallée Village</strong> (outlet premium). Almoçar e passear por lá.</p>
-      </div>
-      <div class="scenario-day">
-        <div class="scenario-day-title">Dia 25 · Regresso</div>
-        <p>Check-out tranquilo. Aproveitar a manhã no <strong>Disney Village</strong> (zona gratuita à porta dos parques, com lojas e restaurantes) e seguir para o aeroporto a meio da tarde.</p>
-      </div>
-      <div class="scenario-tip">💡 Lógica: evitar trânsito no centro e focar na linha de comboio que já vão usar.</div>
-    </div>
-  </div>
-
-  <!-- Cenário B -->
-  <div class="scenario scenario-b" onclick="toggleScenario(this)">
-    <div class="scenario-header">
-      <div class="scenario-header-left">
-        <div class="scenario-letter">B</div>
-        <div>
-          <div class="scenario-title">O Clássico</div>
-          <div class="scenario-subtitle">Ataque rápido a Paris · Torre Eiffel & Louvre</div>
-        </div>
-      </div>
-      <span class="scenario-chevron">⌄</span>
-    </div>
-    <div class="scenario-body">
-      <div class="scenario-day">
-        <div class="scenario-day-title">Dia 23 · Chegada</div>
-        <p>Em Orly, apanhar a <strong>Linha 14</strong> (Metro, direção <em>Saint-Denis - Pleyel</em>) e sair na <strong>Gare de Lyon</strong>. Largar as malas nos cacifos oficiais da estação (<em>Consignes Automatiques</em>, Hall 3, piso&nbsp;-1) — aprox. 7€–9€ por cacifo grande. Ficam com as mãos livres para o dia.</p>
-        <p style="margin-top:8px">Passear pelo centro: Sena, Notre-Dame, Louvre. Ao fim do dia, regressar à Gare de Lyon para levantar as malas e apanhar o <strong>RER A</strong> (direção <em>Marne-la-Vallée - Chessy</em>) até <strong>Torcy</strong>. Da estação, Uber/Bolt ao hotel em 5 min (~8€–10€ no total).</p>
-      </div>
-      <div class="scenario-day">
-        <div class="scenario-day-title">Dia 25 · Regresso</div>
-        <p>Check-out. Fazer o percurso inverso — talvez almoçar no <strong>Quartier Latin</strong> (Bairro Latino) antes de descer para Orly.</p>
-      </div>
-      <div class="scenario-tip">⚠️ Não usar o Google Maps para transportes — ao fim de semana o RER A tem obras frequentes e o algoritmo falha. Instalar <strong>Bonjour RATP</strong> ou <strong>Île-de-France Mobilités</strong>. Se o RER A estiver cortado na Gare de Lyon, o plano B é apanhar a Linha 14 até Saint-Lazare e trocar para a <strong>RER E</strong> até Val de Fontenay, onde se apanha o RER A já fora da zona de obras.</div>
-    </div>
-  </div>
-
-  <!-- Cenário C -->
-  <div class="scenario scenario-c" onclick="toggleScenario(this)">
-    <div class="scenario-header">
-      <div class="scenario-header-left">
-        <div class="scenario-letter">C</div>
-        <div>
-          <div class="scenario-title">O Cultural Otimizado</div>
-          <div class="scenario-subtitle">Montmartre + Château de Vincennes</div>
-        </div>
-      </div>
-      <span class="scenario-chevron">⌄</span>
-    </div>
-    <div class="scenario-body">
-      <div class="scenario-day">
-        <div class="scenario-day-title">Dia 23 · Chegada</div>
-        <p>Em Orly, apanhar a <strong>Linha 14</strong> (Metro, direção <em>Saint-Denis - Pleyel</em>) e sair na <strong>Gare de Lyon</strong>. Largar as malas nos cacifos oficiais da estação (<em>Consignes Automatiques</em>, Hall 3, piso&nbsp;-1) — aprox. 7€–9€ por cacifo grande. De seguida, explorar <strong>Montmartre</strong> a pé. Ao fim do dia, regressar à Gare de Lyon, levantar as malas e apanhar o <strong>RER A</strong> até <strong>Torcy</strong>. Da estação, Uber/Bolt ao hotel em 5 min (~8€–10€ no total).</p>
-      </div>
-      <div class="scenario-day">
-        <div class="scenario-day-title">Dia 25 · Regresso</div>
-        <p>Após o check-out, apanhar o RER A em direção a Paris, mas sair na paragem <strong>Vincennes</strong> — exatamente a meio do caminho. Lá têm o imponente <strong>Castelo de Vincennes</strong> e um bosque gigante. É uma paragem brutal, sem a confusão turística do centro, e que corta a viagem até ao aeroporto a meio.</p>
-      </div>
-      <div class="scenario-tip">⚠️ Não usar o Google Maps para transportes — ao fim de semana o RER A tem obras frequentes e o algoritmo falha. Instalar <strong>Bonjour RATP</strong> ou <strong>Île-de-France Mobilités</strong>. Se o RER A estiver cortado, usar a Linha 14 até Saint-Lazare e trocar para a <strong>RER E</strong> até Val de Fontenay, onde se entra no RER A já fora da zona de obras.</div>
-    </div>
-  </div>
-</div>
-
-
-<!-- BILHÉTICA -->
+<!-- ════════════════════════════════════════
+     PÁGINA: BILHÉTICA
+     ════════════════════════════════════════ -->
 <div class="section page" id="bilhetica">
   <div class="section-title">🎫 Bilhética & Transportes</div>
-  <p style="font-size:13px; color:var(--text-soft); margin-bottom:14px; line-height:1.6;">A Île-de-France simplificou o sistema em 2025: apenas 2 tipos de bilhete. Passes diários para turistas são financeiramente ineficientes para esta viagem — compra avulsa é a única via.</p>
+  <p style="font-size:13px; color:var(--text-soft); margin-bottom:14px; line-height:1.6;">A Île-de-France simplificou o sistema em 2025: apenas 2 tipos de bilhete. Passes diários para turistas são ineficientes para esta viagem — compra avulsa é a única via.</p>
 
-  <!-- Os 2 bilhetes -->
   <div class="card">
     <div class="cost-row">
       <div class="cost-row-left">
@@ -905,7 +1152,6 @@
     </div>
   </div>
 
-  <!-- Budget Dia 23 -->
   <div class="card" style="margin-top:10px">
     <div class="day-header" style="background:var(--blue-light);">
       <span style="font-weight:700; font-size:14px; color:var(--blue);">🧮 Custo de Transportes · Dia 23 · por pessoa</span>
@@ -936,7 +1182,6 @@
     </div>
   </div>
 
-  <!-- Como comprar: Digital -->
   <div class="scenario scenario-b" style="margin-top:10px" onclick="toggleScenario(this)">
     <div class="scenario-header">
       <div class="scenario-header-left">
@@ -951,7 +1196,7 @@
     <div class="scenario-body">
       <div class="scenario-day">
         <ol style="font-size:14px; line-height:1.75; padding-left:18px; color:var(--text);">
-          <li>Instalar a app <strong>Bonjour RATP</strong> ou abrir o <strong>Apple Wallet / Google Wallet</strong> — pode ser feito no avião após aterragem.</li>
+          <li>Instalar a app <strong>Bonjour RATP</strong> ou abrir o <strong>Apple Wallet / Google Wallet</strong>.</li>
           <li>Gerar um passe virtual gratuito. <em>Cada pessoa no seu próprio telemóvel.</em></li>
           <li>Carregar <strong>1× Ticket Aeroporto (14€)</strong> + <strong>3× Ticket Standard (2,50€)</strong>.</li>
           <li>Nos torniquetes: encostar o telemóvel com NFC ativo — o sistema debita o bilhete certo automaticamente.</li>
@@ -960,7 +1205,6 @@
     </div>
   </div>
 
-  <!-- Como comprar: Físico -->
   <div class="scenario" style="border-left: 4px solid var(--grey); margin-bottom:10px;" onclick="toggleScenario(this)">
     <div class="scenario-header">
       <div class="scenario-header-left">
@@ -975,71 +1219,242 @@
     <div class="scenario-body">
       <div class="scenario-day">
         <ol style="font-size:14px; line-height:1.75; padding-left:18px; color:var(--text);">
-          <li>Nas máquinas automáticas da estação da <strong>Linha 14 em Orly</strong>, comprar um cartão <strong>Navigo Easy</strong> (suporte plástico reutilizável, 2,00€ de emissão).</li>
-          <li>Carregar a mesma combinação: <strong>1× Aeroporto + 3× Standard</strong>.</li>
+          <li>Nas máquinas da <strong>Linha 14 em Orly</strong>, comprar um cartão <strong>Navigo Easy</strong> (2,00€ de emissão).</li>
+          <li>Carregar: <strong>1× Aeroporto + 3× Standard</strong>.</li>
         </ol>
-        <div class="scenario-tip" style="margin-top:10px;">💡 Não deitar o cartão fora no final do dia — serve para recarregar o bilhete de regresso a Orly no Dia 25.</div>
+        <div class="scenario-tip" style="margin-top:10px;">💡 Não deitar o cartão fora — serve para recarregar o bilhete de regresso a Orly no Dia 25.</div>
       </div>
     </div>
   </div>
 
-  <!-- Dia 25 regresso -->
   <div class="card">
     <div class="day-header" style="background:#fff8e1;">
       <span style="font-weight:700; font-size:14px; color:#b45309;">✈️ Dia 25 · Regresso a Orly</span>
     </div>
     <div style="padding:12px 16px; font-size:14px; line-height:1.65; color:var(--text);">
-      <p><strong>Via app/wallet:</strong> Comprar 1× Ticket Aeroporto (14€) na app antes de entrar na estação do RER A.</p>
+      <p><strong>Via app/wallet:</strong> Comprar 1× Ticket Aeroporto (14€) na app antes de entrar na estação.</p>
       <p style="margin-top:8px;"><strong>Via Navigo Easy:</strong> Recarregar o cartão com esse mesmo bilhete de 14€ nas máquinas da estação.</p>
     </div>
+  </div>
+
+  <div class="tip-box" style="margin-top:12px; margin-bottom:8px;">
+    ⚠️ <strong>Não usar o Google Maps</strong> para transportes ao fim de semana — o RER A tem obras frequentes e o algoritmo falha. Usar <strong>Bonjour RATP</strong> ou <strong>Île-de-France Mobilités</strong>.
   </div>
 </div>
 
 
-<!-- PRINTS -->
+<!-- ════════════════════════════════════════
+     PÁGINA: CHECKLIST
+     ════════════════════════════════════════ -->
+<div class="section page" id="checklist">
+  <div class="section-title">🧳 Checklist de Viagem</div>
+
+  <div class="checklist-progress">
+    <div class="progress-ring">
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle class="track" cx="26" cy="26" r="22" fill="none" stroke-width="4"/>
+        <circle class="fill" id="progress-circle" cx="26" cy="26" r="22" fill="none" stroke-width="4"
+          stroke-dasharray="138.2" stroke-dashoffset="138.2"/>
+      </svg>
+      <div class="label" id="progress-pct">0%</div>
+    </div>
+    <div class="progress-info">
+      <div class="title" id="progress-title">Pronto para fazer as malas?</div>
+      <div class="sub" id="progress-sub">0 de 0 itens concluídos</div>
+    </div>
+    <button class="reset-btn" onclick="resetChecklist()">Limpar</button>
+  </div>
+
+  <!-- Documentos -->
+  <div class="check-category">
+    <div class="check-cat-header">
+      <div class="check-cat-title">📋 Documentos</div>
+      <div class="check-cat-count" id="count-docs">0/0</div>
+    </div>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="docs" />
+      <div class="check-item-text">Cartão de Cidadão / Passaporte<small>Verificar validade mínima de 6 meses</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="docs" />
+      <div class="check-item-text">Bilhetes de Avião<small>App TAP / Ryanair ou impressos</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="docs" />
+      <div class="check-item-text">Bilhetes Disney<small>App Disneyland Paris — confirmar activação</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="docs" />
+      <div class="check-item-text">Confirmação do Hotel<small>Email com número de reserva</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="docs" />
+      <div class="check-item-text">Cartão de Débito / Crédito<small>Avisado para uso no estrangeiro</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="docs" />
+      <div class="check-item-text">Seguro de Viagem<small>Se aplicável</small></div>
+    </label>
+  </div>
+
+  <!-- Tech -->
+  <div class="check-category">
+    <div class="check-cat-header">
+      <div class="check-cat-title">📱 Tecnologia</div>
+      <div class="check-cat-count" id="count-tech">0/0</div>
+    </div>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="tech" />
+      <div class="check-item-text">Carregador do telemóvel</div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="tech" />
+      <div class="check-item-text">Power bank carregado<small>Para o longo dia na Disney</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="tech" />
+      <div class="check-item-text">App Disneyland Paris instalada<small>Tempos de espera + Premier Access</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="tech" />
+      <div class="check-item-text">App Bonjour RATP instalada<small>Transportes Paris — não usar Google Maps</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="tech" />
+      <div class="check-item-text">App Uber / Bolt instalada<small>Para as viagens hotel ↔ Disney</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="tech" />
+      <div class="check-item-text">Bilhetes transportes no Wallet<small>Apple Wallet ou Google Wallet — Navigo Easy digital</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="tech" />
+      <div class="check-item-text">Auriculares</div>
+    </label>
+  </div>
+
+  <!-- Mala -->
+  <div class="check-category">
+    <div class="check-cat-header">
+      <div class="check-cat-title">👕 Roupa e Calçado</div>
+      <div class="check-cat-count" id="count-roupa">0/0</div>
+    </div>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="roupa" />
+      <div class="check-item-text">Sapatilhas confortáveis<small>Dia Disney = 20.000+ passos. Calçado novo = erro</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="roupa" />
+      <div class="check-item-text">Roupa para 3 dias</div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="roupa" />
+      <div class="check-item-text">Casaco leve / Impermeável<small>Paris em maio pode ser fresco de manhã</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="roupa" />
+      <div class="check-item-text">Meias extra<small>Importante para o dia dos parques</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="roupa" />
+      <div class="check-item-text">Roupa de baixo extra</div>
+    </label>
+  </div>
+
+  <!-- Mochila Disney -->
+  <div class="check-category">
+    <div class="check-cat-header">
+      <div class="check-cat-title">🎒 Mochila do Dia Disney</div>
+      <div class="check-cat-count" id="count-mochila">0/0</div>
+    </div>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="mochila" />
+      <div class="check-item-text">Garrafa de água reutilizável<small>Podem pedir reenchimento grátis nos restaurantes</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="mochila" />
+      <div class="check-item-text">Protector solar FPS 30+<small>Mesmo com nuvens — dia inteiro ao ar livre</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="mochila" />
+      <div class="check-item-text">Snacks de emergência<small>Barras de cereais, fruta — preços dentro são altos</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="mochila" />
+      <div class="check-item-text">Analgésico (ex: ibuprofeno)<small>Para o cansaço do final do dia</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="mochila" />
+      <div class="check-item-text">Pensos rápidos<small>Bolhas nos pés são uma certeza com 20km</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="mochila" />
+      <div class="check-item-text">Câmara / GoPro<small>Opcional mas recomendado</small></div>
+    </label>
+  </div>
+
+  <!-- Farmácia -->
+  <div class="check-category" style="margin-bottom:8px;">
+    <div class="check-cat-header">
+      <div class="check-cat-title">💊 Farmácia</div>
+      <div class="check-cat-count" id="count-farm">0/0</div>
+    </div>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="farm" />
+      <div class="check-item-text">Medicação habitual<small>Para os 3 dias + margem</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="farm" />
+      <div class="check-item-text">Antiácido / Digestivo<small>Comida de parque temático pode surpreender</small></div>
+    </label>
+    <label class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-cat="farm" />
+      <div class="check-item-text">Anti-histamínico<small>Alérgias de primavera — Paris em maio</small></div>
+    </label>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PÁGINA: PRINTS
+     ════════════════════════════════════════ -->
 <div class="section page" id="comprovativos">
-  <div class="section-title">🧾 Comprovativos & Simulações</div>
+  <div class="section-title">🧾 Comprovativos</div>
 
   <div class="prints-grid">
-
     <div class="print-thumb" onclick="openModal(0)">
       <img src="Prints/VOO - bilhete 1px.png" alt="Voo – 1 pessoa" loading="lazy" />
       <div class="print-thumb-icon">✈️</div>
       <div class="print-thumb-label">Voo · 1 pessoa</div>
     </div>
-
-    <div class="print-thumb" onclick="openModal(2)">
+    <div class="print-thumb" onclick="openModal(1)">
       <img src="Prints/HOTEL - 2noites 4px.png" alt="Hotel – 2 noites" loading="lazy" />
       <div class="print-thumb-icon">🏨</div>
       <div class="print-thumb-label">Hotel · 2 noites</div>
     </div>
-
-    <div class="print-thumb" onclick="openModal(3)">
+    <div class="print-thumb" onclick="openModal(2)">
       <img src="Prints/DISNEYLAND - bilhetes.png" alt="Bilhetes Disneyland" loading="lazy" />
       <div class="print-thumb-icon">🎟️</div>
       <div class="print-thumb-label">Bilhetes Disney</div>
     </div>
-
-    <div class="print-thumb" onclick="openModal(4)">
+    <div class="print-thumb" onclick="openModal(3)">
       <img src="Prints/UBER - viagem de ida.png" alt="Uber – Ida" loading="lazy" />
       <div class="print-thumb-icon">🚕</div>
       <div class="print-thumb-label">Uber · Ida</div>
     </div>
-
-    <div class="print-thumb" onclick="openModal(5)">
+    <div class="print-thumb" onclick="openModal(4)">
       <img src="Prints/UBER - viagem de regresso.png" alt="Uber – Regresso" loading="lazy" />
       <div class="print-thumb-icon">🚕</div>
       <div class="print-thumb-label">Uber · Regresso</div>
     </div>
-
   </div>
 </div>
 
 
 <!-- FOOTER -->
 <div class="footer">
-  <strong>Operação Disneyland Paris · Maio 2026</strong><br>
-  Valores sujeitos a confirmação final
+  <strong>Disneyland Paris · 23–25 Maio 2026</strong><br>
+  Gil · Bárbara · Guilherme · Leonor
 </div>
 
 
@@ -1049,23 +1464,24 @@
     <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
     <span>Plano</span>
   </a>
-  <a href="#custos" data-section="custos">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M14.5 8.5c-.5-.8-1.4-1-2.5-1-1.4 0-2.5.9-2.5 2s1.1 2 2.5 2 2.5.9 2.5 2-1.1 2-2.5 2c-1.1 0-2-.3-2.5-1M12 6v2M12 16v2"/></svg>
-    <span>Custos</span>
-  </a>
-  <a href="#cenarios" data-section="cenarios">
-    <svg viewBox="0 0 24 24"><polygon points="3,6 9,3 15,6 21,3 21,18 15,21 9,18 3,21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
-    <span>Cenários</span>
+  <a href="#disney" data-section="disney">
+    <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+    <span>Disney</span>
   </a>
   <a href="#bilhetica" data-section="bilhetica">
     <svg viewBox="0 0 24 24"><path d="M2 9a2 2 0 0 1 0-4h20a2 2 0 0 1 0 4v1a2 2 0 0 1 0 4v1a2 2 0 0 1 0 4H2a2 2 0 0 1 0-4v-1a2 2 0 0 1 0-4V9z"/><line x1="9" y1="5" x2="9" y2="19" stroke-dasharray="2 2"/></svg>
     <span>Bilhetes</span>
+  </a>
+  <a href="#checklist" data-section="checklist">
+    <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+    <span>Pack</span>
   </a>
   <a href="#comprovativos" data-section="comprovativos">
     <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
     <span>Prints</span>
   </a>
 </nav>
+
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modal" onclick="handleModalClick(event)">
@@ -1082,19 +1498,25 @@
 
 
 <script>
-  // ── Cost toggle
-  function setCostView(mode) {
-    const btns = document.querySelectorAll('.cost-toggle button');
-    if (mode === 'person') {
-      document.body.classList.add('per-person');
-      btns[0].classList.remove('active');
-      btns[1].classList.add('active');
+  // ── Countdown
+  (function() {
+    const trip = new Date('2026-05-23T00:00:00');
+    const now = new Date();
+    const diff = Math.ceil((trip - now) / (1000 * 60 * 60 * 24));
+    const pill = document.getElementById('countdown-pill');
+    const num = document.getElementById('countdown-num');
+    const lbl = document.getElementById('countdown-label');
+    if (diff > 0) {
+      num.textContent = diff;
+      lbl.textContent = diff === 1 ? 'dia para a viagem' : 'dias para a viagem';
+    } else if (diff === 0) {
+      num.textContent = '🎢';
+      lbl.textContent = 'É hoje!';
+      pill.style.background = 'rgba(200,155,42,0.35)';
     } else {
-      document.body.classList.remove('per-person');
-      btns[0].classList.add('active');
-      btns[1].classList.remove('active');
+      pill.style.display = 'none';
     }
-  }
+  })();
 
   // ── Scenarios accordion
   function toggleScenario(el) {
@@ -1103,7 +1525,7 @@
 
   // ── Modal
   const prints = [
-    { src: 'Prints/VOO - bilhete 1px.png',            caption: 'Voo · 1 pessoa (referência de preço)' },
+    { src: 'Prints/VOO - bilhete 1px.png',            caption: 'Voo · 1 pessoa' },
     { src: 'Prints/HOTEL - 2noites 4px.png',          caption: 'Hotel · 2 noites · 4 pessoas' },
     { src: 'Prints/DISNEYLAND - bilhetes.png',        caption: 'Bilhetes Disneyland Paris · 1 dia / 2 parques' },
     { src: 'Prints/UBER - viagem de ida.png',         caption: 'Uber · Ida (Hotel → Disney)' },
@@ -1140,7 +1562,6 @@
     if (e.target === document.getElementById('modal')) closeModal();
   }
 
-  // Keyboard nav
   document.addEventListener('keydown', e => {
     if (!document.getElementById('modal').classList.contains('open')) return;
     if (e.key === 'Escape') closeModal();
@@ -1148,7 +1569,7 @@
     if (e.key === 'ArrowRight') modalNav(1);
   });
 
-  // ── Bottom Nav — SPA page switching
+  // ── Bottom Nav — SPA
   const navLinks = document.querySelectorAll('.bottom-nav a');
 
   function showPage(id) {
@@ -1169,6 +1590,86 @@
   });
 
   showPage('cronograma');
+
+  // ── Checklist
+  const STORAGE_KEY = 'dlp_checklist_2026';
+  const catCounters = {
+    docs: 'count-docs',
+    tech: 'count-tech',
+    roupa: 'count-roupa',
+    mochila: 'count-mochila',
+    farm: 'count-farm',
+  };
+
+  function saveChecklist() {
+    const state = {};
+    document.querySelectorAll('.check-item input[type="checkbox"]').forEach((cb, i) => {
+      state[i] = cb.checked;
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  function loadChecklist() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    document.querySelectorAll('.check-item input[type="checkbox"]').forEach((cb, i) => {
+      if (state[i]) {
+        cb.checked = true;
+        cb.closest('.check-item').classList.add('checked');
+      }
+    });
+  }
+
+  function updateProgress() {
+    const all = document.querySelectorAll('.check-item input[type="checkbox"]');
+    const done = document.querySelectorAll('.check-item input[type="checkbox"]:checked');
+    const total = all.length;
+    const checked = done.length;
+    const pct = total ? Math.round((checked / total) * 100) : 0;
+
+    const circ = 2 * Math.PI * 22;
+    const offset = circ - (pct / 100) * circ;
+    document.getElementById('progress-circle').style.strokeDashoffset = offset;
+    document.getElementById('progress-pct').textContent = pct + '%';
+    document.getElementById('progress-sub').textContent = `${checked} de ${total} itens concluídos`;
+
+    let title = 'Pronto para fazer as malas?';
+    if (pct === 100) title = '🎉 Tudo pronto! Boa viagem!';
+    else if (pct >= 75) title = '💪 Quase lá!';
+    else if (pct >= 50) title = '🔥 Meio caminho andado';
+    else if (pct > 0) title = '✅ A começar bem!';
+    document.getElementById('progress-title').textContent = title;
+
+    Object.entries(catCounters).forEach(([cat, counterId]) => {
+      const catAll = document.querySelectorAll(`.check-item input[data-cat="${cat}"]`);
+      const catDone = document.querySelectorAll(`.check-item input[data-cat="${cat}"]:checked`);
+      const el = document.getElementById(counterId);
+      el.textContent = `${catDone.length}/${catAll.length}`;
+      el.className = 'check-cat-count' + (catDone.length === catAll.length && catAll.length > 0 ? ' done' : '');
+    });
+  }
+
+  function toggleCheck(label) {
+    const cb = label.querySelector('input[type="checkbox"]');
+    if (event.target !== cb) cb.checked = !cb.checked;
+    label.classList.toggle('checked', cb.checked);
+    saveChecklist();
+    updateProgress();
+  }
+
+  function resetChecklist() {
+    if (!confirm('Limpar toda a checklist?')) return;
+    document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => {
+      cb.checked = false;
+      cb.closest('.check-item').classList.remove('checked');
+    });
+    localStorage.removeItem(STORAGE_KEY);
+    updateProgress();
+  }
+
+  loadChecklist();
+  updateProgress();
 
   // ── Service Worker
   if ('serviceWorker' in navigator) {
